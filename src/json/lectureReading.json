@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Syllabus",
+    "url": "/syllabus",
+    "lecture": 0
+  },
+  {
+    "name": "Eloquent JS, Chapters 1 & 2",
+    "url": "http://eloquentjavascript.net/02_program_structure.html",
+    "lecture": 1
+  },
+  {
+    "name": "[MDN] A re-introduction to JavaScript",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript",
+    "lecture": 1
+  },
+  {
+    "name": "Callback Hell",
+    "url": "http://callbackhell.com/",
+    "lecture": 2
+  },
+  {
+    "name": "Eloquent JS, Chapter 6",
+    "url": "http://eloquentjavascript.net/06_object.html",
+    "lecture": 3
+  },
+  {
+    "name": "Codecademy HTML/CSS track",
+    "url": "https://www.codecademy.com/tracks/web",
+    "lecture": 3
+  },
+  {
+    "name": "Bootstrap docs",
+    "url": "http://getbootstrap.com/",
+    "lecture": 3
+  },
+  {
+    "name": "[MDN] Document Object Model",
+    "url": "https://developer.mozilla.org/en-US/docs/DOM",
+    "lecture": 3
+  },
+  {
+    "name": "Chrome DevTools docs",
+    "url": "https://developers.google.com/chrome-developer-tools/",
+    "lecture": 3
+  },
+  {
+    "name": "jQuery API",
+    "url": "https://api.jquery.com/",
+    "lecture": 3
+  },
+  {
+    "name": "HTTP Made Really Easy",
+    "url": "https://www.jmarshall.com/easy/http/",
+    "lecture": 7
+  },
+  {
+    "name": "Express Docs",
+    "url": "http://expressjs.com/",
+    "lecture": 7
+  },
+  {
+    "name": "React Docs",
+    "url": "https://facebook.github.io/react/index.html",
+    "lecture": 4
+  },
+  {
+    "name": "Redux Docs",
+    "url": "http://redux.js.org/",
+    "lecture": 5
+  },
+  {
+    "name": "Code for todolist example",
+    "url": "https://github.com/cis197/lecture-examples/tree/master/lec7",
+    "lecture": 5
+  },
+  {
+    "name": "React as an Implementation Detail",
+    "url": "https://chriskiehl.com/article/react-as-an-implementation-detail",
+    "lecture": 9
+  },
+  {
+    "name": "Lecture Example",
+    "url": "https://github.com/cis197/lecture-examples/tree/master/lec8",
+    "lecture": 11
+  }
+]

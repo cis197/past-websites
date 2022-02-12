@@ -1,0 +1,262 @@
+---
+path: '/assignments/campuswire-lite-part-1'
+date: '2021-11-06'
+due: '2021-11-15'
+title: 'Homework 6: Campuswire Lite Part 1'
+hidden: false
+hasZip: false
+---
+
+import { Code, WarningMessage, ErrorMessage, InfoMessage } from '../../components'
+
+<hr />
+
+<p>🥳 This will be the last homework for the semester 🥳</p>
+
+To prepare you better for the final project, you are going to build a more complicated website compared to what you did in HW4 and HW5.
+That's why it consists of two milestones, you will have one week for each milestone.
+
+<InfoMessage showIcon>
+  {`Just like the past two homeworks, this assignment doesn't have any tests. We outline the functionality we are
+  looking for in the writeup. The grade of your homework depends on the completion of required features.`}
+</InfoMessage>
+
+## Final Product
+
+![final product](https://user-images.githubusercontent.com/47411373/74400797-2addfa80-4ded-11ea-8635-71f11d9bc7cc.gif)
+
+Our final application will be a really pared down version of Campuswire ("pared down" is an understatement) that allows you to list out a bunch of questions that only registered users have submitted. That being said
+there is also a signup/login portion of this website with a persistent database.
+
+With that idea in mind, let's dive in.
+
+In milestone 1, you are going to create a backend with all the API endpoints that handle login/ logout and posts updates.
+
+In milestone 2, you are going to connect the backend with a frontend React website to make things interactive.
+
+<hr />
+
+## Milestone 1: Backend + Database
+
+**The live code in [lecture 8](https://github.com/cis197/live-code/tree/master/F2021/lecture8)
+should be extremely helpful, so it is a good idea to make sure you understand those examples before you start.** 🤓
+
+### Testing
+
+Install [Postman](https://www.postman.com/) on your local machine and follow what is done during lecture 8
+to test if your routes work.
+
+### Express Server
+
+As we have mentioned a bunch of times in lecture, we are using *express* server.
+
+To get things started, open a terminal, `cd` into the directory you want to put your code,
+and then do
+```bash
+mkdir folder-name
+cd folder-name
+npm init --y
+```
+
+Use `npm install ...` to install the relevant dependencies.
+
+Now, you can open the folder using VS Code and create a new file called `server.js`. Use the live code as
+an example to set things up.
+
+**Remember to set up ESLint as well by following the updated instructions at the bottom of the style guide.**
+
+At this stage, your code base should have
+```
+server.js
+package.json
+...
+```
+
+### Database
+
+First things first, there are two ways to set up the database,
+1) install both MongoDB and Robo3T to run it locally or 2) use remote a database.
+<u>Access MongoDB locally</u>
+
+- Follow the guides on [this link](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials)
+to install the MongoDB Community Edition for your operating system.
+- Go to [the Robo3T website](https://robomongo.org/download) and hit *Download Robo 3T only*.
+You do not need to click on *Download your Double Pack* or *Download Studio 3T*.
+
+<u>Access MongoDB remotely</u>
+
+- Register a free account on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Create a database and then you should be able to see the URI and other credentials.
+
+Now, open your VS Code from your root directory, create a new folder called `models`
+to store the *schema* and *model* objects. In the folder, you should have two `model` objects,
+a `Question` model and a `User` model.
+
+The `Question` model should be created in a file called `question.js` and
+the `User` model should be created in a file called `user.js`.
+
+The `Question` model should base on the schema with the following attributes
+- `questionText` which is of type `String`
+- `answer` which is of type `String`
+- `author` which is of type `String`
+
+The `User` model should base on the schema with the following attributes
+- `username` which is of type `String` (`username` is the unique identifier)
+- `password` which is of type `String`
+
+In order to establish a connection between your express server and mongoDB,
+make sure you add `mongoose.connect()` to your `server.js`
+
+Your code base should now look like this
+```
+server.js
+package.json
+models/
+  question.js
+  user.js
+...
+```
+
+### Routers
+
+With the `model` objects created, we should now use them to build the 2 routers
+for a) handling question updates b) login system.
+
+Create a new folder called `routes`, and under it create it two files `account.js`, `api.js`.
+In `account.js`, we should be adding routes that handle login system.
+In `api.js`, we should be adding routes that handle question updates.
+
+In `account.js`, you should create the following 3 routes:
+- `localhost:3000/account/signup`: `POST` route for signup
+- `localhost:3000/account/login`: `POST` route for login
+- `localhost:3000/account/logout`: `POST` route for logout
+
+You need to use **session** we went over in lecture for `login` and `logout`, so make sure in
+`server.js`, you add the `cookieSession` middleware.
+
+Note that, in `account.js`, you should only say `router.post('/signup', ...)`
+instead of `router.post('/account/signup', ...)`. You should specify the `/account` route prefix
+in `server.js`.
+
+Similarly, in `api.js`, you should create the following 3 routes:
+- `localhost:3000/api/questions`: `GET` route for fetching all questions
+- `localhost:3000/api/questions/add`: `POST` route for adding a question
+- `localhost:3000/api/questions/answer`: `POST` route for adding an answer to a question
+
+Each record in MongoDB has a built-in attribute `_id`, you should use this as the unique identifier
+when looking up a question. When you are testing, you can assume that `_id` is in `req.body`.
+
+After finishing this, your code base should look like this
+```
+server.js
+package.json
+models/
+  question.js
+  user.js
+routes/
+  account.js
+  api.js
+...
+```
+
+### Middlewares
+
+As mentioned in class, a middleware is a function that executes before a certain subset (or all) of the requests that go into our application. This is useful for checking things like whether is user is authenticated or not and handling errors in our application.
+
+Let's implement a middleware function called `isAuthenticated`. The function checks to see if a user is defined in the session object (be careful here, you need to check for empty string here as well). If it is, then we allow the request to continue without any error parameters passed on (just by calling `next()`). Otherwise, we throw an error using `next(...)`.
+
+You should create a new folder called `middlewares`. Under the folder, create a file called `isAuthenticated.js` and put the definition of `isAuthenticated`.
+
+After completion, you should have
+
+```
+server.js
+package.json
+models/
+  question.js
+  user.js
+routes/
+  account.js
+  api.js
+middlewares/
+  isAuthenticated.js
+...
+```
+
+However, we have only defined the middleware. To actually execute this on some routes, we need to do the following:
+in your `POST logout` route in `routes/account.js`, add the `isAuthenticated` middleware before `(req, res)`.
+
+<Code
+  js
+  code={`
+router.post('/logout', isAuthenticated, (req, res) => {
+  ...
+})
+`}
+/>
+
+What this essentially means is that the user has to be first logged in before logging out.
+
+Similary, add the `isAuthenticated` middleware to `POST /questions/add` and `POST /questions/answer`.
+After all, the user should only be able to add and answer question if he is logged in.
+
+### Error Handling
+
+We are almost done, but there is a final piece of puzzle we have to solve to make the picture complete.
+
+We need a middleware in `server.js` to handle errors! Recall if the user attempts to call
+any routes with `isAuthenticated` middleware mounted but didn't log in, the middleware throws an error message using
+`next(...)`. However, we haven't done anything so far to appropriately handle the errors thrown. Also, errors might not
+only come from `isAuthenticated` middleware. When there is a malfunction in the database side, we should
+also throw an error using `next(...)`.
+
+TODOs:
+- go back to all your routes and check if there is an `err` object in the callback function.
+If there is an `err` object, you need to throw an error using `next(...)` if `err` exists.
+- refer to the *the default error handler* section in the [Express Error Handling Guide](https://expressjs.com/en/guide/error-handling.html)
+to create an error handler middleware in `server.js`.
+
+<hr />
+
+## Submission
+
+Upload your code to GitHub and follow the requirements.
+On Gradescope, you just need to submit your GitHub link and commit hash.
+
+If you decide to make your GitHub repo **private**, please add every staff as a collaborator
+- Peter Chen @peterbaile
+- Riya Narayan @riya-n
+- Joy Leeswadtrakul @joylees
+- Jason Tran @jasont2022
+
+<!-- ### Submission instructions
+
+Before you do anything, create a file `heroku_url.txt` in the top level directory of your code (same level as `server.js`). Just copy paste in the link to the heroku app and save the file.
+
+Submit the following files to gradescope. There are a few automated tests to just check that you have the files we want to look at.
+
+As always, great job for getting through this assignment! It's definitely a time consuming one, but an important one that teaches you a lot about how web apps truly work in the backend.
+
+#### Rubric
+
+The main things we will look for are as follows:
+
+- User signup/login valid: [5pts]
+- Adding questions restricted to users only: [2pts]
+- /account/logout link is authentication protected. [2pts]
+- Persistent questions database. [5pts]
+- Able to display questions upon submission of new question [3pts]
+- Files:
+  - There should be evidence that middlewares were implemented (isAuthenticated) [2pts]
+  - There should be a routes/account file and the account routes should be appropriately mounted [2pts]
+  - There should be evidence of a database models for Users and Questions. [2pts]
+- UX:
+  - Evident links to login, signup, sign in and homepage (just enough so that we can navigate around, this isn't shown in the writeup...but we'll give you freedom on how you choose to implement this). [2pts]
+
+Okay so now that we have a barebones functioning Campuswire that allows users to sign up, log in, and submit questions, we want to add some more functionality. For example, we did not have the ability to answer questions, nor did we have the ability to see questions and answers come in "live" (i.e. we had to refresh the page in order to see new content). Thus, we want our new feature set to be:
+
+- "Live" functionality for viewing new questions come in
+- "Live" functionality for viewing new answers come in on a question we are looking at
+- Ability to select question and see content/answers without doing page reload
+- Ability to submit answer to question without doing page reload
+- Ability to add question without doing page reload -->

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Peter Baile Chen",
+    "role": "Instructor",
+    "image": {
+      "src": "../images/staff/peter.jpg"
+    },
+    "email": "cbaile@seas.upenn.edu",
+    "officeHours": "TBD"
+  },
+  {
+    "name": "Riya Narayan",
+    "role": "Teaching Assistant",
+    "image": {
+      "src": "../images/staff/riya.jpg"
+    },
+    "email": "riyan@seas.upenn.edu",
+    "officeHours": "Wed 3-5PM @ OHQ"
+  },
+  {
+    "name": "Joy Leeswadtrakul",
+    "role": "Teaching Assistant",
+    "image": {
+      "src": "../images/staff/joy.JPG"
+    },
+    "email": "joylees@seas.upenn.edu",
+    "officeHours": "Friday 10:30AM-12:30PM @ OHQ"
+  },
+  {
+    "name": "Jason Tran",
+    "role": "Teaching Assistant",
+    "image": {
+      "src": "../images/staff/jason.jpeg"
+    },
+    "email": "jastran@seas.upenn.edu",
+    "officeHours": "Saturday 10AM-12PM @ OHQ"
+  }
+]

@@ -1,0 +1,147 @@
+---
+path: '/assignments/dynamic-personal-website'
+date: '2021-10-22'
+due: '2021-11-01'
+title: 'Homework 5: Dynamic Personal Website'
+hidden: false
+hasZip: false
+---
+
+import { InfoMessage, ErrorMessage, Code, BtnAnchor } from '../../components'
+
+<InfoMessage showIcon>
+  {`Similar to the React Comment Website homework, this assignment doesn't have any tests.
+  The grade of your homework depends on the completion of required features.`}
+</InfoMessage>
+
+Again, there's no zipped implementation stub for this assignment. Hopefully the last homework was useful in preparing you for this.
+The todo list example we went through during class is a good starting point if you feel stucked 😉
+
+---
+
+### Final Product
+
+We want you to build an app with the following _functionality_.
+By that we mean you by no means need to style the app to this extent (although some extent of styling is required), we just care about the things we outline in the rubric. If you want to build out additional functionality or styles beyond what we mention, go for it!
+
+<BtnAnchor href="https://cis197-dynamic-personal-website.netlify.app/" target="_BLANK">
+  Example app
+</BtnAnchor>
+
+
+**Modify Introduction**
+
+![introduction](https://i.ibb.co/1GFNqCF/introduction.gif)
+
+**Add Posts**
+
+![post-1](https://i.ibb.co/R7X6dBP/post-1.gif)
+
+**Modify & Delete Posts**
+
+![post-2](https://i.ibb.co/CbVs4Xc/post-2.gif)
+
+---
+
+### User requirements
+
+Basically, you have to reproduce at least all functionalities already present in the example website provided.
+If you are unsure what is the correct expectation of a certain feature, try it out in the example site.
+The following list may not be exhaustive, if you have any questions/ discover any weird behaviors on the example site, please clarify on CampusWire.
+
+- As a user, I should be able to modify the introduction which includes at least the following
+  - an image
+  - a short description
+- As a user, I should be able to create a new post which includes at least the following
+  - a title of the post
+  - a short description of the post
+  - an image of the post
+  - you should also generate a unique ID for each post and display the ID for each post
+- As a user, I should be able to delete a post
+- As a user, I should be able to modify any information of an existing post
+- When attempting to modify information for introduction/ any existing post, the current values should be displayed in the input boxes
+- When attempting to modify the information, there should be a CANCEL button
+
+For the post IDs, you don't have to worry about reordering them when some posts are deleted, as long as the post IDs are unique.
+
+**Note:** none of the state is persistent. There is no database or API. If we refresh the page, there is nothing which persists.
+
+---
+
+### Technical requirements
+
+- you should structure your codebase as follows
+```
+src/
+  App.js            The component we created earlier in the "Get started" section
+  actions/          Contains all redux actions
+  components/       Contains all components
+  reducers/         Contains all reducers
+  styles/           (optional) Contains all CSS files
+  ...
+index.html          Root HTML file
+index.js            Root JS file
+...
+```
+- Use **parcel** to bundle your app instead of using `create-react-app`
+- Write your app in ReactJS you learned from CIS 197, not the ReactJS you learned from some random tutorials or Stackover Flow
+  - you should use **functional components** throughout the entire assignment
+  - you should use **ES6 syntax**
+- No errors in the developer tools console when clicking through the app
+- Deploy the app to [Netlify](https://www.netlify.com/)
+- Maintain the following states in **Redux**: the introduction info & list of posts
+- Maintain the following state using `useState` in your components: a status that indicates whether the user is in edit mode or not
+- Do not store a list of components, i.e. no `[<Comp />, <Comp />, ...]`
+- Each file under `components/` folder should only contain a single component
+  - That is to say, if you need to nest components (which I am sure you will). Create the children components in another file, and import it into the file for the parent components
+  - Do not over-complicate a single component, if you find a single component to occupy a lot of lines, chances are you can separate that single component into several smaller ones
+- Use ESlint, the set up guide can be found at the bottom of the styles page
+- Some extent of styling is expected
+  - [Tailwind CSS](https://tailwindcss.com/)
+  - [Bulma](https://bulma.io/)
+  - [Bootstrap](https://getbootstrap.com/)
+  - CSS-related tools like [styled-components](https://styled-components.com/) or [scss](https://sass-lang.com/)
+
+---
+
+### What to submit
+
+On Gradescope:
+
+1. Link to a GitHub repository containing your code (check back **HW4 GitHub requirements** if you forget)
+1. Link to where your app is hosted in production (the url to the website)
+
+If you decide to make your GitHub repo **private**, please add every staff as a collaborator
+- Peter Chen @peterbaile
+- Riya Narayan @riya-n
+- Joy Leeswadtrakul @joylees
+- Jason Tran @jasont2022
+
+---
+
+### Grading
+
+We will manually grade these submissions per the user and technical criteria outined above.
+As per usual, there will also be 5 points for coding styles and 5 points for website styling.
+
+---
+
+### Disclaimer
+
+This is a very free-form assignment and we recognize it's going to be tough for some people. If you have any questions about how you might do something, ask on Campuswire or in office hours and the TA's will try to be particularly helpful in pointing you in the right direction for this assignment.
+
+<ErrorMessage showIcon>
+  <p>
+    <u>
+      <strong>Note:</strong> do not copy code from the internet.
+    </u>{' '}
+    You are welcome to search around and see how people go about building apps
+    like this, but you cannot adapt any code you find online.
+  </p>
+  <p>
+    The TA's are good at detecting when code is not genuine, and this will
+    significantly damage your standing in the course. You will get a lot out of
+    this assignment from a learning point of view if you do it on your own and
+    take the time to really understand the technologies.
+  </p>
+</ErrorMessage>

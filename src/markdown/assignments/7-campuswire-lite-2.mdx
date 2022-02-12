@@ -1,0 +1,167 @@
+---
+path: '/assignments/campuswire-lite-part-2'
+date: '2022-11-15'
+due: '2022-11-22'
+title: 'Homework 7: Campuswire Lite Part 2'
+hidden: false
+hasZip: false
+---
+
+import { Code, WarningMessage, ErrorMessage, InfoMessage } from '../../components'
+
+<hr />
+
+<p>🥳 This is the last milestone of the last homework for the semester 🥳</p>
+
+Recap: To prepare you better for the final project, you are going to build a more complicated website compared to what you did in HW4 and HW5.
+That's why it consists of two milestones, you will have one week for each milestone.
+
+**Please upload your code to the same repo you used for the last milestone**
+
+## Final Product
+
+![final product](https://user-images.githubusercontent.com/47411373/74400797-2addfa80-4ded-11ea-8635-71f11d9bc7cc.gif)
+
+Our final application will be a really pared down version of Campuswire ("pared down" is an understatement) that allows you to list out a bunch of questions that only registered users have submitted. That being said
+there is also a signup/login portion of this website with a persistent database.
+
+With that idea in mind, let's dive in.
+
+In milestone 1, you are going to create a backend with all the API endpoints that handle login/ logout and posts updates.
+
+In milestone 2, you are going to connect the backend with a frontend React website to make things interactive.
+
+<hr />
+
+## Milestone 2: Frontend
+
+**Refer to [lecture 9](https://github.com/cis197/live-code/tree/master/F2021/lecture9) updated code
+for how to connect frontend and backend using *parcel***. You should follow the exact same boilerplate
+(e.g. having a `frontend` and `backend` folder, using `concurrently` & `nodemon` or `node`)
+
+**YOU DO NOT NEED REDUX FOR THIS HOMEWORK!** Everything should be handled using `useState`
+
+### Frontend Routing
+Since we have multiple components, we want them to have their own url. 
+Refer to the [example in offical docs](https://reactrouter.com/web/example/basic) for how to set it up.
+
+### Sign Up
+
+The first component you need to create is the sign up page. You will need to configure the frontend routing
+so that this component is available at `localhost:3000/signup` if you are using 3000 as the
+port number for your `express` server.
+
+![sign up](https://i.ibb.co/SchKCcL/cw-signup.png)
+
+The above image describes what needs to be created:
+- input boxes for username and password respectively
+- a sign up button that sends a `POST` request to the backend `/account/signup` using `axios`
+- a link that, once clicked, sends user to the `/login` page (the `<Link />` component from `react-router-dom` should be helpful, refer to the [link](https://reactrouter.com/web/api/Link))
+
+Also, there are a few requirements regarding sign up:
+- if the user successfully signed up, you should redirect them back to the home page `/` (the `useHistory` function from `react-router-dom` is helpful here, here's the [link](https://reactrouter.com/web/api/Hooks/usehistory))
+- if the user failed to sign up, you should pop up an [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) using `alert(...)` and the user should remain on the `/signup` page
+
+### Login
+
+Similar to the `SignUp` component you just created, you need to configure the frontend routing
+such that this `Login` component is available at `localhost:3000/login`
+
+![login](https://i.ibb.co/PCL8LGT/cw-login.png)
+
+You need to create
+- input boxes for username and password respectively
+- a login button that sends a `POST` request to the backend `/account/login` using `axios`
+- a link that, once clicked, sends user to the `/signup` page
+
+Similarly,
+- if the user successfully logged in, you should redirect him back to the home page `/`
+- if the user failed to log in, you should pop up an [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) and the user should remain on the `/login` page
+
+### Home Page
+
+Now comes the final and the most complicated component which is the home page.
+This component should be available at `localhost:3000`
+
+There are two states here: one where the user is logged in and one where the user is logged out.
+Depending on the states, you need to render different things.
+You might want to create a new API route in the backend that tells you whether a user is logged in or not.
+
+Similar to how we handle errors above, you should use `alert` to create a pop up in case an error occurs.
+
+**Logged Out**
+
+![cw-logged-out](https://i.ibb.co/CbKNCGZ/cw-out-2.png)
+
+If the user is logged out, 
+- there should be a link, that once clicked, sends the user to `/login` page
+- the user should be able to see a list of questions which includes the following only
+  - the content of the question, i.e. `questionText`
+  - the author of the question
+  - the answer of the question
+
+**Logged In**
+
+![cw-logged-in](https://i.ibb.co/fdDKHyD/cw-in.png)
+
+If the user is logged in,
+- the user should be able to see his username displayed
+- the user can click on a log out button to sign him off (`POST` to `/account/logout`)
+- the user should see a "add new quetion" button that once clicked opens up a modal (refer to the GIF at the top of the page)
+  which includes
+  - a text box for entering question
+  - a button for submitting a question that makes a `POST` request to `/api/questions/add`
+  - a button to close the modal
+- a list of questions where each question should includes (you need to send a `GET` request to `/api/questions`)
+  - the content of the question, i.e. `questionText`
+  - the author of the question
+  - the answer of the question
+  - a form for the user to submit an answer (the submit button will need to make a `POST` request to `/api/questions/answer`)
+
+Last but not the least, the list of questions and answers should be **automatically updated after 2 seconds**.
+That is, users should be able to see the updates without having to refresh.
+You can test it out by creating two different users and having them logged in, one in normal mode,
+and the other in incognito/ private mode.
+
+Here's a hint on how you should do it: in your home page component, you should manipulate the
+life cycle methods and repeat the action of getting the list of questions every 2 seconds.
+
+<Code
+  js
+  code={`
+useEffect(() => {
+  const intervalID = setInterval(() => {
+    ...
+  }, 2000)
+  // return a clean-up function so that the repetition can be stopped
+  // when the component is unmounted
+  return () => clearInterval(intervalID)
+}, [])
+`}
+/>
+
+But this is by no means the best way. If there are no questions in the database that are updated, then
+keep fetching from DB is a waste of bandwidth and transactions which at the end of the day
+increases your bill. Ideally, the backend should be smart enough to let the frontend know when
+it needs to fetch the new batch of questions. Does that sound like we should use sockets instead?
+Definitely! But **this is not required**. If you have time, go explore the solution using socket.io!
+
+### Styles
+Finally, some extent of styling is expected
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Bulma](https://bulma.io/)
+- [Bootstrap](https://getbootstrap.com/)
+- CSS-related tools like [styled-components](https://styled-components.com/) or [scss](https://sass-lang.com/)
+
+<hr />
+
+## Submission 
+
+Upload your code to GitHub and follow the requirements.
+On Gradescope, you just need to submit your GitHub link.
+
+If you decide to make your GitHub repo **private**, please add every staff as a collaborator
+- Peter Chen @peterbaile
+- Riya Narayan @riya-n
+- Joy Leeswadtrakul @joylees
+- Jason Tran @jasont2022
