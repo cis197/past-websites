@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: `/~cis197`,
   siteMetadata: {
     title: `CIS 197`,
     description: `Student-taught 19X course on JavaScript web development at the University of Pennsylvania.`, // eslint-disable-line
