@@ -1,7 +1,7 @@
 ---
 path: '/assignments/1'
-date: '2021-09-13'
-due: '2021-09-20'
+date: '2022-01-11'
+due: '2022-01-20'
 title: 'Homework 1: Data Wrangling'
 hidden: false
 ---
@@ -10,7 +10,7 @@ import { InfoMessage, WarningMessage, Code } from '../../components'
 import { BORDER } from '../../constants/colors'
 
 <InfoMessage showIcon>
-  {`To build you the habit of writing elegant code, we will enforce the coding styles starting from HW1. But TAs will be lenient on grading this time because it is the first homework 😉`}
+  {`To build you the habit of writing elegant code, we will enforce the coding styles starting from HW1. Please read through the entire style guide carefully before you start the homework.`}
 </InfoMessage>
 
 To get you started on your 197 journey, we're gonna have you guys first get accustomed to JavaScript syntax! Unlike previous semesters however, we're going to be de-emphasizing ES5 (for those who don't know, ES stands for ECMAScript, the ["official"](https://auth0.com/blog/a-brief-history-of-javascript/) name of JavaScript) syntax along with the amount of time we spend covering it, and predominantly focus on ES6 and onward. Although you'll definitely encounter some ES5 here and there when opening, say, the dev tools in Chrome or seeing the transpiled code from Webpack (which we'll all be covering later this sem!), you'll most likely be working with ES6 syntax for most of your future project work in the future. Not only will it be cleaner syntax overall, but it's the new industry standard that you'll be seeing most documentation written in / other people working in, and it'll help you in the long run.
@@ -19,7 +19,10 @@ To that end, we'll be doing some finger exercises with a really cool [Kaggle dat
 
 ### Before starting this assignment
 
-Review [Lecture 1](/lectures/1) ~ you may also find any of the other resources on the [lecture page](/lectures) helpful.
+Review [Lecture 1](/lectures/1-js-basics) ~ you may also find any of the other resources on the [lecture page](/lectures) helpful.
+
+Also unlike other classes, we **highly encourage the use of google** to search things up as long as understand the materials you are reading.
+The ability to search things and understand others' work is so important in industry and especially with web development and JS. This is a skill that we wish you can master in this class as well!!
 
 <WarningMessage showIcon>
   Remember, this homework uses ES6! For that reason, just looking up how to do a
@@ -32,9 +35,12 @@ Review [Lecture 1](/lectures/1) ~ you may also find any of the other resources o
 
 ## Getting Started
 
+- [Getting started guide](/development)
+- [Style guide](/style)
+
 This homework is written in NodeJS, which is a server-side implementation of JavaScript. It's like Ruby, Python, or other scripting languages: you write the code in plain-text files and then run them with the console command `node`.
 
-The first thing you'll need to get started is NodeJS. Follow the instructions [here](/development) to download and install Node using NVM. Once finished, you can check that you've installed Node correctly by running `node --version` from your terminal. It should print a string like `v12.18.1`.
+The first thing you'll need to get started is NodeJS. Follow the instructions in the **getting started guide** to download and install Node using NVM. Once finished, you can check that you've installed Node correctly by running `node --version` from your terminal. It should print a string like `v12.18.1`.
 
 Once you've got Node on your computer, you'll need to install the dependencies for the homework. From your homework directory, run:
 
@@ -56,7 +62,7 @@ In general, these are the concepts that we're aiming to practice using this home
 - arrow functions (you should be utilizing `.forEach()`, not any other array methods!)
 - template literals (if you don't know remember these, refer back to the lecture notes ~)
 - `let` + `const`
-- `import` and `export`: getting used to the right format and what does what (definitely can be confusing in the beginning since there's several ways to do so, so just get familiar with it throughout this assignment!)
+- import and export: getting used to the right format and what does what (definitely can be confusing in the beginning since there's several ways to do so, so just get familiar with it throughout this assignment!)
 
 **TIP: if you don't know where to start, even with just feeding in the data (trust me, I've been in your shoes before rip), these [docs](https://www.npmjs.com/package/csv-parser) should be a good place to start :))**
 
@@ -64,8 +70,6 @@ Additionally, things can definitely seem scary and overwhelming in the beginning
 
 ## Submitting the Homework
 
-We will be using Gradescope this semester. To join the course sign up/log into gradescope.com. Refer to CampusWire for the course code. Note, in order to submit the assignment, you MUST register with the course code on CampusWire. The only two files you need to submit are **functions.js** and **index.js**. Any other files are extraneous for our grading purposes(e.g. feedback.js, package.json, .estlintrc, etc.).
+We will be using Gradescope this semester. To join the course sign up/log into gradescope.com. Refer to Canvas for the course code. Note, in order to submit the assignment, you MUST register with the course code on Canvas. The only two files you need to submit are **functions.js** and **index.js**. Any other files are extraneous for our grading purposes(e.g. feedback.js, package.json, .estlintrc, etc.).
 
-Note, you have infinite submissions. The autograded portion is scaled to 15.0 points (per our syllabus) and manual/autograded style will be added later. Note that the autograded tests and style are subject to adjustment based on the discretion of the TAs (i.e. if we see that you're just getting a bunch of points wrong because of some simple syntax errors, we will let you know about it and limit the amount of points we will cut).
-Manually graded style for HW1 will be 5/5 as long as we see attempts to practice good styles.
-However, pay attention to the comments we leave so you don't make the same mistakes in future homeworks!
+Note, you have **infinite submissions**. The autograded portion is scaled to 15.0 points (per our syllabus) and manual/autograded style will be added later.

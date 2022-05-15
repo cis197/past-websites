@@ -1,7 +1,7 @@
 ---
 number: 6
 path: '/lectures/6-redux'
-date: '2021-10-18'
+date: '2022-02-17'
 title: 'Class components, Life cycles, Redux'
 hidden: false
 ---
@@ -16,7 +16,7 @@ class: center, middle, block-text
 class: large
 
 # `console.log (pre-lecture logistics)`
-- HW4 due tonight (please make sure you understand lecture 4 + lecture 5 + live code)
+- HW4 deadline extended, due on Saturday (please make sure you understand lecture 4 + lecture 5 + live code)
 
 ---
 
@@ -293,8 +293,6 @@ High-level:
 - `connect` : a function that connects React to redux
 - `Provider` : a component that connects React to redux
 
-[Example link](https://github.com/cis197/react-redux-example)
-
 ---
 
 ## cOoL sToRy...but how does this work w/ React?
@@ -369,6 +367,18 @@ const mstp = (state) => {
 }
 connect(mstp, null)
 ```
+
+---
+
+class: center, middle, block-text
+
+# Live Code
+
+---
+
+# Goal
+
+- replicate the [todo list app](https://codesandbox.io/s/todo-app-with-redux-itg60)
 
 ---
 

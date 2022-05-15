@@ -1,7 +1,7 @@
 ---
 number: 2
 path: '/lectures/2-callbacks-events-async'
-date: '2021-09-19'
+date: '2022-01-20'
 title: 'Callbacks, Events, and Asynchronous Programming'
 hidden: false
 ---
@@ -19,7 +19,8 @@ class: med-large
 ## `console.log('pre-lecture logistics')`
 
 - Waitlist should be resolved
-- Any homework issues??
+- HW1 due tonight
+- In-person starting next week
 
 ---
 
@@ -34,7 +35,6 @@ class: med-large
 - Solution 1: Callback functions
 - Solution 2: Promises
 - Solution 3: Async/ await
-- Any remaining time is OH
 
 <!-- ---
 

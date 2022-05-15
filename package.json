@@ -5,9 +5,14 @@
   "version": "0.1.1",
   "author": "CIS 197 Staff <ccabo@seas.upenn.edu>",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "removeStatic": "rm -rf public .cache",
+    "start": "npm run develop",
+    "format": "prettier --write \"./src/**/*.{js,jsx}\"",
+    "lint": "eslint \"./src/**/*.{js,jsx}\"",
+    "deploy": "sh ./scripts/deploy.sh"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.5",

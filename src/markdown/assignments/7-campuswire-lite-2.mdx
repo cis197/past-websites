@@ -1,7 +1,7 @@
 ---
 path: '/assignments/campuswire-lite-part-2'
-date: '2022-11-15'
-due: '2022-11-22'
+date: '2022-03-24'
+due: '2022-04-07'
 title: 'Homework 7: Campuswire Lite Part 2'
 hidden: false
 hasZip: false
@@ -35,7 +35,7 @@ In milestone 2, you are going to connect the backend with a frontend React websi
 
 ## Milestone 2: Frontend
 
-**Refer to [lecture 9](https://github.com/cis197/live-code/tree/master/F2021/lecture9) updated code
+**Refer to lecture 8 code
 for how to connect frontend and backend using *parcel***. You should follow the exact same boilerplate
 (e.g. having a `frontend` and `backend` folder, using `concurrently` & `nodemon` or `node`)
 
@@ -43,7 +43,9 @@ for how to connect frontend and backend using *parcel***. You should follow the 
 
 ### Frontend Routing
 Since we have multiple components, we want them to have their own url. 
-Refer to the [example in offical docs](https://reactrouter.com/web/example/basic) for how to set it up.
+Refer to the [example in offical docs](https://reactrouter.com/docs/en/v6/examples/basic) for how to set it up.
+
+To install `react-router-dom`, simply run `npm install react-router-dom`
 
 ### Sign Up
 
@@ -56,10 +58,10 @@ port number for your `express` server.
 The above image describes what needs to be created:
 - input boxes for username and password respectively
 - a sign up button that sends a `POST` request to the backend `/account/signup` using `axios`
-- a link that, once clicked, sends user to the `/login` page (the `<Link />` component from `react-router-dom` should be helpful, refer to the [link](https://reactrouter.com/web/api/Link))
+- a link that, once clicked, sends user to the `/login` page (the `<Link />` component from `react-router-dom` should be helpful, refer to the [link](https://reactrouter.com/docs/en/v6/api#link))
 
 Also, there are a few requirements regarding sign up:
-- if the user successfully signed up, you should redirect them back to the home page `/` (the `useHistory` function from `react-router-dom` is helpful here, here's the [link](https://reactrouter.com/web/api/Hooks/usehistory))
+- if the user successfully signed up, you should redirect them back to the home page `/` (the `useNavigate` function from `react-router-dom` is helpful here, here's the [link](https://reactrouter.com/docs/en/v6/api#usenavigate))
 - if the user failed to sign up, you should pop up an [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) using `alert(...)` and the user should remain on the `/signup` page
 
 ### Login
@@ -116,7 +118,7 @@ If the user is logged in,
   - the content of the question, i.e. `questionText`
   - the author of the question
   - the answer of the question
-  - a form for the user to submit an answer (the submit button will need to make a `POST` request to `/api/questions/answer`)
+  - a form for the user to submit an answer (the submit button will need to make a `POST` request to `/api/questions/answer`). The user should be able to **update answers afterwards however many times** he/ she wants.
 
 Last but not the least, the list of questions and answers should be **automatically updated after 2 seconds**.
 That is, users should be able to see the updates without having to refresh.
@@ -157,11 +159,12 @@ Finally, some extent of styling is expected
 
 ## Submission 
 
-Upload your code to GitHub and follow the requirements.
-On Gradescope, you just need to submit your GitHub link.
+Upload your code to GitHub and follow the requirements (check back **HW4 GitHub requirements** if you forget).
+On Gradescope, you just need to submit your GitHub link and commit hash.
 
 If you decide to make your GitHub repo **private**, please add every staff as a collaborator
 - Peter Chen @peterbaile
 - Riya Narayan @riya-n
 - Joy Leeswadtrakul @joylees
 - Jason Tran @jasont2022
+- Brandy Yuan @yuanb01

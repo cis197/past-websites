@@ -1,7 +1,7 @@
 ---
 number: 1
 path: '/lectures/1-js-basics'
-date: '2021-09-13'
+date: '2022-01-13'
 title: 'JavaScript Basics and Syntax'
 hidden: false
 ---

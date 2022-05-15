@@ -1,14 +1,14 @@
 ---
-number: 8
-path: '/lectures/8-servers-in-js'
-date: '2021-10-31'
+number: 7
+path: '/lectures/7-servers-in-js'
+date: '2022-02-24'
 title: 'Servers in JavaScript'
 hidden: false
 ---
 
 class: center, middle, block-text
 
-# Lecture 8
+# Lecture 7
 
 ## Servers in JavaScript
 
@@ -401,7 +401,7 @@ module.exports = router
 
 ```js
 // index.js
-import router from './router'
+const router = require('./router')
 
 app.use('/router', searchRouter)
 ```
@@ -454,6 +454,7 @@ The request object is passed in to every middleware function in order, so most o
 
 - The `req.body` property is set by the [body-parser](https://github.com/expressjs/body-parser) or [express.json()](https://expressjs.com/en/api.html) middleware
 - The `req.cookies` property is set by the [cookie-parser](https://github.com/expressjs/cookie-parser) middleware
+- The `req.session` property is set by the [cookie-session](https://www.npmjs.com/package/cookie-session) middleware
 
 ---
 
@@ -488,6 +489,8 @@ Responses are a little bit more in-depth than requests, but still pretty easy. L
   - `res.status(404)` for Not Found errors
 - `res.send()` - send a string, object, or Array as data.
   - `res.send({error: 'Mocha exploded!'})`
+- `res.json()` - send a JSON object which retains the type of the data
+  - `res.json([1, 2, 3, 4])`
 - `res.redirect()` - redirect the user to another page.
   - `res.redirect('/login')` - redirect to login page
 
@@ -592,15 +595,7 @@ Of course, a cookie isn't much use if a malicious user could modify it with any 
 
 The key-value pairs of the cookie are augmented by one final KV pair: an hash of all other key-value pairs, plus a secret key. This hash is checked against the key-value pairs when the cookie is sent back. If tampering occurred, they won't match, and the request is rejected!
 
-Conveniently, the [cookie-session](https://github.com/expressjs/cookie-session) middleware will do a lot of this for us! We'll use it on the homework.
-
----
-
-class: x-large
-
-# Example Code
-
-Example code is available in [this repository](https://github.com/cis197-2015S/express-examples). Make sure to check the different branches!
+Conveniently, the [cookie-session](https://www.npmjs.com/package/cookie-session) middleware will do a lot of this for us! We'll use it on the homework.
 
 ---
 
@@ -608,5 +603,5 @@ class: x-large
 
 # Coming Up
 
-- Homework 5: "Campuswire Lite" - a web app built in Handlebars and Express
-- Next week: back to the browser with ReactJS.
+- Homework 5: "Campuswire Lite" - a web app built in React and Express
+- Next week: Databases + connect with frontend.

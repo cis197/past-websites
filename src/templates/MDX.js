@@ -47,7 +47,7 @@ const MDXTemplate = ({ data, location }) => {
       {date && <Timestamp>Last updated: {date}</Timestamp>}
       {due && (
         <p>
-          Due <strong>{due}, 11:59:59pm</strong>.
+          Due <strong>{due}, 11:59pm</strong>.
         </p>
       )}
       {isAssignment && hasZip !== false && renderZipPath()}

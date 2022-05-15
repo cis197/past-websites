@@ -1,14 +1,14 @@
 ---
-number: 10
-path: '/lectures/10-connect-frontend-backend'
-date: '2021-11-15'
+number: 9
+path: '/lectures/9-connect-frontend-backend'
+date: '2022-03-24'
 title: 'Connecting Frontend and Backend'
 hidden: false
 ---
 
 class: center, middle, block-text
 
-# Lecture 10
+# Lecture 9
 
 ## Connecting Frontend with Backend
 
@@ -49,20 +49,22 @@ And we are now doing server-side rendering
 
 ---
 
-class: large
+class: med-large
 
 # Axios
 
 `npm install axios`
 
-- [official docs](https://github.com/axios/axios)
+- [docs](https://github.com/axios/axios)
 - a extremely convenient way that allows React to send HTTP requests
 
 ```js
 import axios from 'axios'
 
+// get request
 axios.get('/info')
 
+// post request with a body
 axios.post('/user', { questionText: '', author: '' })
 ```
 
@@ -73,8 +75,11 @@ class: med-large
 # `server.js`
 
 ```js
+const path = require('path')
+
 app.use(express.static('dist')) // set the static folder
 
+// THESE ROUTES SHOULD BE PUT AFTER ALL OTHER ROUTERS
 // set favicon
 app.get('/favicon.ico', (req, res) => {
   res.status(404).send()
@@ -94,15 +99,23 @@ class: med-large
 
 `npm install concurrently`
 
+`npm install nodemon` (hot reload express backend upon changes)
+
 ```js
 "scripts": {
-  "build": "parcel watch frontend/index.html", // start the frontend
-  "server": "node backend/server.js", // start the backend
+  "build": "parcel frontend/src/index.html", // start the frontend
+  "server": "node backend/index.js" or "nodemon backend/index.js", // start the backend
   "dev": "concurrently --kill-others \"npm run build\" \"npm run server\""
 }
 ```
 
-To allows `async/ await` actions, add
+<!-- ---
+
+class: med-larger
+
+# Cont'd
+
+To allows `async/ await` actions, add the following to `package.json`
 
 ```js
 "browserslist": [
@@ -111,5 +124,5 @@ To allows `async/ await` actions, add
   "last 3 opera versions",
   "last 3 ios_saf versions",
   "last 3 safari versions"
-  ]
-```
+]
+``` -->

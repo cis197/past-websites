@@ -1,7 +1,7 @@
 ---
 path: '/assignments/campuswire-lite-part-1'
-date: '2021-11-06'
-due: '2021-11-15'
+date: '2022-03-23'
+due: '2022-03-31'
 title: 'Homework 6: Campuswire Lite Part 1'
 hidden: false
 hasZip: false
@@ -38,7 +38,7 @@ In milestone 2, you are going to connect the backend with a frontend React websi
 
 ## Milestone 1: Backend + Database
 
-**The live code in [lecture 8](https://github.com/cis197/live-code/tree/master/F2021/lecture8)
+**The live code in lecture 7 and lecture 8
 should be extremely helpful, so it is a good idea to make sure you understand those examples before you start.** 🤓
 
 ### Testing
@@ -127,12 +127,12 @@ In `account.js`, we should be adding routes that handle login system.
 In `api.js`, we should be adding routes that handle question updates.
 
 In `account.js`, you should create the following 3 routes:
-- `localhost:3000/account/signup`: `POST` route for signup
-- `localhost:3000/account/login`: `POST` route for login
+- `localhost:3000/account/signup`: `POST` route for signup with a `body` of `username` and `password`
+- `localhost:3000/account/login`: `POST` route for login with a `body` of `username` and `password`
 - `localhost:3000/account/logout`: `POST` route for logout
 
 You need to use **session** we went over in lecture for `login` and `logout`, so make sure in
-`server.js`, you add the `cookieSession` middleware.
+`server.js`, you add the [cookie-session](https://www.npmjs.com/package/cookie-session) middleware.
 
 Note that, in `account.js`, you should only say `router.post('/signup', ...)`
 instead of `router.post('/account/signup', ...)`. You should specify the `/account` route prefix
@@ -140,11 +140,12 @@ in `server.js`.
 
 Similarly, in `api.js`, you should create the following 3 routes:
 - `localhost:3000/api/questions`: `GET` route for fetching all questions
-- `localhost:3000/api/questions/add`: `POST` route for adding a question
-- `localhost:3000/api/questions/answer`: `POST` route for adding an answer to a question
+- `localhost:3000/api/questions/add`: `POST` route for adding a question with a `body` of `questionText`
+  - Note that the request `body` **does not and should not** contain the `author` key, think about where you can get it
+- `localhost:3000/api/questions/answer`: `POST` route for adding/ updating an answer to a question with a `body` of `_id` and `answer`
 
 Each record in MongoDB has a built-in attribute `_id`, you should use this as the unique identifier
-when looking up a question. When you are testing, you can assume that `_id` is in `req.body`.
+when looking up a question. When you are testing, you can assume that `_id` is in `req.body` (i.e. for testing purpose, you can hardcode `_id` fetched directly from MongoDB in a request).
 
 After finishing this, your code base should look like this
 ```
@@ -220,7 +221,7 @@ to create an error handler middleware in `server.js`.
 
 ## Submission
 
-Upload your code to GitHub and follow the requirements.
+Upload your code to GitHub and follow the requirements (check back **HW4 GitHub requirements** if you forget).
 On Gradescope, you just need to submit your GitHub link and commit hash.
 
 If you decide to make your GitHub repo **private**, please add every staff as a collaborator
@@ -228,6 +229,7 @@ If you decide to make your GitHub repo **private**, please add every staff as a 
 - Riya Narayan @riya-n
 - Joy Leeswadtrakul @joylees
 - Jason Tran @jasont2022
+- Brandy Yuan @yuanb01
 
 <!-- ### Submission instructions
 

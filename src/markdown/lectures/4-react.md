@@ -1,7 +1,7 @@
 ---
 number: 4
 path: '/lectures/4-react'
-date: '2021-10-04'
+date: '2022-02-03'
 title: 'ReactJS'
 hidden: false
 ---
@@ -18,7 +18,7 @@ class: med-large
 
 ## `console.log('pre-lecture logistics')`
 
-- Homework 3 (Pokemon Map Builder) due tonight
+- Homework 3 (Pokemon Map Builder) due next week
 
 ---
 
@@ -50,6 +50,7 @@ class: x-large
 1. Why use React?
 1. JSX
 1. React
+1. Live Code
 
 ---
 
@@ -507,12 +508,30 @@ const App = () => (
 
 ---
 
-class: x-large
+class: center, middle, block-text
 
-# Example Code
+# Live Code
 
-**Note:** these are a little antiquated, but the logic is still useful today!
+---
 
-Some example code for React is available on [the CIS 197 Github](https://github.com/cis197/react-examples). Be sure to reference this when completing the homework assignment!
+# Setting up the boilerplate
 
-We will also post code from lecture [here.](https://github.com/cis197/live-code)
+```bash
+npm init --y # --y means to say yes to every option that npm asks
+
+npm install parcel react react-dom
+```
+
+- We will be using Parcel as our bundler, checkout the guide [here](https://parceljs.org/recipes/react/)
+
+<div style="width: 70%; position: relative; display: flex; align-items: center;">
+  <div style="flex: 1; width: auto;">
+    <img alt="Parcel logo" src="https://user-images.githubusercontent.com/19409/31321658-f6aed0f2-ac3d-11e7-8100-1587e676e0ec.png" />
+  </div>
+</div>
+
+---
+
+# Goal
+
+- replicate the [emoji search web app](https://ahfarmer.github.io/emoji-search/)

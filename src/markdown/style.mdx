@@ -1,6 +1,6 @@
 ---
 path: '/style'
-date: '2021-10-09'
+date: '2022-01-11'
 metaTitle: 'Style Guide'
 title: 'JavaScript Style Guide'
 ---
@@ -166,6 +166,9 @@ If you are still unsure, post on CW and we are very happy to help :-)
     "strict": 0,
     "semi": ["error", "never"], // require or disallow use of semicolons instead of ASI,
     "arrow-parens": ["error", "as-needed"], // require the use of parenthesis when needed
+    "prefer-destructuring": ["error", { "array": true, "object": true }, { "enforceForRenamedProperties": true }],
+    "eqeqeq": ["error", "smart"],
+    "prefer-template": "error",
     "react/jsx-filename-extension": 0,
     "react/prop-types": 0,
     "no-plusplus": 0,

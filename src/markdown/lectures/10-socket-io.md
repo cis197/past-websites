@@ -1,14 +1,14 @@
 ---
-number: 9
-path: '/lectures/9-socket-io'
-date: '2020-11-05'
+number: 10
+path: '/lectures/10-socket-io'
+date: '2022-03-31'
 title: 'Real Time Web Applications (Socket.io)'
-hidden: true
+hidden: false
 ---
 
 class: center, middle, block-text
 
-# Lecture 9
+# Lecture 10
 
 ## Real Time Web Applications
 
@@ -89,7 +89,7 @@ From their [official homepage](http://socket.io):
 Socket.IO enables real-time bidirectional event-based communication.
 It works on every platform, browser or device, focusing equally on reliability and speed. It's used by everyone, from Microsoft Office, Yammer, Zendesk, Trello... to hackathon winners and little startups.
 
----
+<!-- ---
 
 class: med
 
@@ -110,7 +110,7 @@ const httpServer = http.createServer(requestListener)
 httpServer.listen(8080, () => {
   console.log('HTTP server is running...')
 })
-```
+``` -->
 
 ---
 
@@ -118,22 +118,22 @@ class: med
 
 # Socket.io Server
 
-Adding Socket.io is as simple as passing the server to the `io` constructor! It automatically wraps the HTTP server into a Websocket server.
-
 ```javascript
-const http = require('http')
-const socketIO = require('socket.io') // new
+const express = require('express')
+const http = require('http') // require the vanilla http server
+const { Server } = require('socket.io') // require socket.io
 
-const requestListener = (request, response) => {
-  response.writeHead(200)
-  response.end('Hello, World!\n')
-}
+const app = express()
+const server = http.createServer(app) // create our server
+const io = new Server(server) // create our IO sockets
 
-const httpServer = http.createServer(requestListener)
+// to write route handlers, you still use app.get(), app.use(), ...
 
-const io = socketIO(httpServer) // new
+io.on('connection', socket => {
+  console.log('a user is connected')
+})
 
-httpServer.listen(8080, () => {
+server.listen(3000, () => {
   console.log('HTTP server is running...')
 })
 
@@ -183,6 +183,28 @@ Every client in a real time application runs the same code in the browser. To in
 
 class: med
 
+# Socket.io for React clients
+
+```js
+import React, { useEffect } from 'react'
+import { io } from 'socket.io-client'
+
+// replace localhost with your IP address to let others connect!
+const socket = io('http://localhost:3000')
+
+const App = () => {
+  // socket receives a message with type 'hello'
+  socket.on('hello', data => {
+    console.log('received from backend')
+  })
+}
+
+```
+
+<!-- ---
+
+class: med
+
 # Connecting to the Socket Server
 
 After loading Socket.io onto the page, the `io` constructor for clients automatically attempts to connect to the locally hosted socket server. For example, inside `client.js`:
@@ -199,7 +221,7 @@ socket.on('connect', () => {
 socket.on('disconnect', () => {
   console.log('Disconnected from the central server')
 })
-```
+``` -->
 
 ---
 
@@ -211,15 +233,16 @@ Information can be sent between server and client by emitting events. Sending in
 
 On the client:
 
-```javascript
-var socket = io()
+```js
+// 'message' is the event type and 'hello world!' is the payload
 socket.emit('message', 'hello world!')
 ```
 
 On the server:
 
-```javascript
+```js
 io.on('connection', socket => {
+  // 'message' is the event type
   socket.on('message', data => {
     console.log(data) // hello world!
   })
@@ -258,6 +281,7 @@ Servers can send information back to every other connected client except one usi
 ```javascript
 io.on('connection', socket => {
   socket.on('update', data => {
+    // everyone socket other than this one will receive the message
     socket.broadcast.emit('updated_data', data)
   })
 })
@@ -265,7 +289,7 @@ io.on('connection', socket => {
 
 The above code shows how you can relay all updates from a single client to all other connected clients as they happen...in real time!
 
----
+<!-- ---
 
 class: med-large
 
@@ -288,7 +312,7 @@ nsp.on('connection', function () {
 ```javascript
 var socket = io('my-namespace')
 socket.emit('message', 'Connected to namespace!')
-```
+``` -->
 
 ---
 
@@ -299,12 +323,12 @@ class: med-large
 Within each namespace, you can create _rooms_ or collections of sockets. Servers add clients to rooms and can emit information to entire rooms of clients.
 
 ```javascript
-socketServer.on('connection', function (socket) {
+socketServer.on('connection', socket => {
   // add new client to the chatroom!
   socket.join('chatroom')
 
   // alert everyone in the room
-  var chat = socketServer.sockets.in('chatroom')
+  const chat = socketServer.sockets.in('chatroom')
 
   chat.emit('new_client', socket.id)
 })
@@ -341,3 +365,12 @@ io.of('myNamespace').emit('message', 'gg')
 // sending to individual socketid
 socket.broadcast.to(socketid).emit('message', 'for your eyes only')
 ```
+
+---
+
+class: med
+
+# Live Code
+
+- [build a chat app](https://socket.io/get-started/chat)
+- [live code final project](https://github.com/cis197/live-code/tree/master/S2022/lecture10)

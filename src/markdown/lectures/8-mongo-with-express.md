@@ -1,14 +1,14 @@
 ---
-number: 9
-path: '/lectures/9-mongo-with-express'
-date: '2021-11-07'
+number: 8
+path: '/lectures/8-mongo-with-express'
+date: '2022-03-24'
 title: 'Using MongoDB with Express'
 hidden: false
 ---
 
 class: center, middle, block-text
 
-# Lecture 9
+# Lecture 8
 
 ## Express with a database (MongoDB) 
 
@@ -102,7 +102,7 @@ If you're hosting your MongoDB instance on the [cloud](https://www.mongodb.com/c
   '/<your-db-name>' // specific db
 ```
 
----
+<!-- ---
 
 class: x-large
 
@@ -110,7 +110,7 @@ class: x-large
 
 Check out the code for the Penn Course Review homework assignment!
 
-We connect using Mongoose, but the principles behind the connection are all the same.
+We connect using Mongoose, but the principles behind the connection are all the same. -->
 
 ---
 
@@ -179,9 +179,7 @@ const userSchema = new Schema({
 const User = model('User', userSchema)
 ```
 
----
-
-class: large
+<!-- class: large
 
 # Custom Methods
 
@@ -203,61 +201,107 @@ const User = mongoose.model('User', userSchema)
 module.exports = User
 ```
 
+--- -->
+
 ---
 
-class: large
+class: med-large
 
-# Saving a Cool User
+# Create a User
+
+- [docs](https://mongoosejs.com/docs/models.html#constructing-documents)
 
 ```js
-const User = require('./user-module-location')
+const User = require('./user-model-location')
 
-const devesh = new User({
-  name: 'Devesh',
-})
+const createUser = async () => {
+  await User.create({ username, password })
+}
+```
 
-devesh.coolify(function (err, name) {
-  if (err) throw err
-  console.log(name) // Devesh is cool
-})
+- note that all database actions are asynchronous, so we need to use `async/await`
 
-devesh.save(function (err) {
-  if (err) throw err
-  console.log('User saved!')
-})
+---
+
+class: med-large
+
+# Query a user/ users
+
+- [docs](https://mongoosejs.com/docs/models.html#querying)
+
+```js
+const User = require('./user-model-location')
+
+const getOneUser = async () => {
+  // search the user that matches `username`
+  const user = await User.findOne({ username })
+  return user
+}
+
+const getAllUsers = async () => {
+  const users = await User.find()
+  return users
+}
 ```
 
 ---
 
-class: large
+class: med-large
 
-# Get a User and update them
+# Update a user
+
+- [docs](https://mongoosejs.com/docs/models.html#updating)
 
 ```js
-var User = require('./user-module-location')
+const User = require('./user-model-location')
 
-User.find({ name: 'Devesh' }, (e, user) => {
-  if (e) throw e
-  user.name = 'Devesh Dayal'
-  user.save(err => {
-    if (err) throw err
-    console.log('User successfully updated!')
-  })
-})
+const updateUser = async () => {
+  // 1st argument: unique ID --> username
+  // 2nd argument: things to update --> password
+  await User.updateOne({ username }, { password })
+}
 ```
 
 ---
 
-class: large
+class: med-large
 
 # Delete a User
 
+- [docs](https://mongoosejs.com/docs/models.html#deleting)
+
 ```js
-User.deleteOne({ name: 'Devesh' }, e => {
-  if (e) throw e
-  console.log('User successfully deleted!')
-})
+const User = require('./user-model-location')
+
+const deleteUser = async () => {
+  // delete a record that matches both username and password
+  await User.deleteOne({ username, password })
+}
 ```
+
+---
+
+class: med-large
+
+# Error handling
+
+```js
+const User = require('./user-model-location')
+
+const deleteUser = async () => {
+  try {
+    await User.deleteOne({ username, password })
+  } catch (e) {
+    console.log(e)
+  } 
+}
+```
+
+---
+
+class: center, middle, block-text
+
+# Additional
 
 ---
 
@@ -333,7 +377,7 @@ We used cookieSession to handle storing a session
 
 A session (short for server side sessions), stores a session identifier (in miemory) to check to see what client is hitting a server.
 
-- This becomes a bottleneck to maintain because you needt o keep track of all the different session identifiers in server memory
+- This becomes a bottleneck to maintain because you need to keep track of all the different session identifiers in server memory
 
 ---
 

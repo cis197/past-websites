@@ -1,7 +1,7 @@
 ---
 number: 3
 path: '/lectures/3-html-css-jquery'
-date: '2021-09-27'
+date: '2022-01-27'
 title: 'HTML, CSS and jQuery'
 hidden: false
 ---
@@ -19,6 +19,7 @@ class: med-large
 ## `console.log('pre-lecture logistics')`
 
 - Homework 2 due Tonight
+- Please follow ESLint regardings styles
 - Again, lmk if you have any questions/ comments/ concerns
 
 ---

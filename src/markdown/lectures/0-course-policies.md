@@ -1,7 +1,7 @@
 ---
 number: 0
 path: '/lectures/0-course-policies'
-date: '2021-09-13'
+date: '2022-01-13'
 title: 'Course Policies'
 hidden: false
 ---
@@ -131,7 +131,7 @@ class: x-large
 
 # Campuswire
 
-Make sure that you're signed up for the [Campuswire](https://campuswire.com/c/GAF6BB875/feed) for the class. You can post any questions you have here, and the course staff will be using it for communications.
+Make sure that you're signed up for the [Campuswire](https://campuswire.com/c/GBED6F3F7/feed) for the class. You can post any questions you have here, and the course staff will be using it for communications.
 
 ---
 
@@ -139,7 +139,7 @@ class: x-large
 
 # Canvas
 
-Grades will be distributed via Canvas, so make sure that you are enrolled in CIS 197.
+Kinda useless under our context
 
 ---
 

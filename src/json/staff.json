@@ -6,7 +6,7 @@
       "src": "../images/staff/peter.jpg"
     },
     "email": "cbaile@seas.upenn.edu",
-    "officeHours": "TBD"
+    "officeHours": "Wed 8:15PM-9:15PM @ OHQ"
   },
   {
     "name": "Riya Narayan",
@@ -15,7 +15,7 @@
       "src": "../images/staff/riya.jpg"
     },
     "email": "riyan@seas.upenn.edu",
-    "officeHours": "Wed 3-5PM @ OHQ"
+    "officeHours": "Wed 1PM-3PM @ OHQ"
   },
   {
     "name": "Joy Leeswadtrakul",
@@ -24,7 +24,7 @@
       "src": "../images/staff/joy.JPG"
     },
     "email": "joylees@seas.upenn.edu",
-    "officeHours": "Friday 10:30AM-12:30PM @ OHQ"
+    "officeHours": "Tue 9:30AM-11:30AM @ OHQ"
   },
   {
     "name": "Jason Tran",
@@ -33,6 +33,15 @@
       "src": "../images/staff/jason.jpeg"
     },
     "email": "jastran@seas.upenn.edu",
-    "officeHours": "Saturday 10AM-12PM @ OHQ"
+    "officeHours": "Sat 10AM-12PM @ OHQ"
+  },
+  {
+    "name": "Brandy Yuan",
+    "role": "Teaching Assistant",
+    "image": {
+      "src": "../images/staff/brandy.jpg"
+    },
+    "email": "yuanb@seas.upenn.edu",
+    "officeHours": "Mon 9:30AM-11:30AM @ OHQ"
   }
 ]

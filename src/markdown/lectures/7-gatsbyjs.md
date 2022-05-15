@@ -3,7 +3,7 @@ number: 7
 path: '/lectures/7-gatsbyJS'
 date: '2021-10-25'
 title: 'Redux, Routing, CSR vs SSR, Deployment, GatsbyJS'
-hidden: false
+hidden: true
 ---
 
 class: center, middle, block-text
